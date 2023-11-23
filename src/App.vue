@@ -1,28 +1,90 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <el-container class="app-out-pannel">
+      <el-header class="sys-header">WebGIS一张图项目系统</el-header> 
+      <el-container class="app-content-pannel">
+        <el-aside class="sys-menu">
+          <el-menu
+          default-active = "1"
+          class = "el-menu-vertical-demo"
+          @open="handleOpen"
+          @close="handleClose"
+          :collapse="true"
+          background-color="#606266"
+        >
+            <el-menu-item index="1">
+              <i class = "el-icon-monitor"></i>
+              <span slot="title">地图大屏</span>
+            </el-menu-item>
+            <el-menu-item index="2">
+              <i class = "el-icon-picture-outline"></i>
+              <span slot="title">一张图</span>
+            </el-menu-item>
+            <el-menu-item index="3">
+              <i class = "el-icon-map-location"></i>
+              <span slot="title">三维展示</span>
+            </el-menu-item>
+            <el-menu-item index="4">
+              <i class = "el-icon-setting"></i>
+              <span slot="title">系统管理</span>
+            </el-menu-item>
+          </el-menu>
+        </el-aside>
+        
+        <el-main class="sys-content">
+          <router-view></router-view>
+          <!-- <MapView /> -->
+        </el-main>
+      </el-container>
+    </el-container>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+//import MapView from './components/MapViwe.vue'
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  name:'App',
+  components:{
+   // MapView,
+  },
+  methods:{
+    handleOpen(key, keyPath){
+      console.log(key, keyPath);
+    },
+    handleClose(key, keyPath){
+      console.log(key, keyPath)
+    }
   }
-}
+};
 </script>
 
 <style>
+html,
+body,
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+.app-out-pannel,
+.app-content-pannel {
+  height: 100%;
+}
+.sys-header {
+  background-color: #303133;
+  line-height: 60px;
+  height: 60px;
+  color: #fff;
+  font-size: 600;
+}
+.sys-menu {
+  background-color: #606266;
+  width: 60px !important;
+  overflow: hidden;
+}
+.sys-content{
+  padding: 5px;
 }
 </style>
